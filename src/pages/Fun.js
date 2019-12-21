@@ -58,7 +58,7 @@ const Row = styled.div(
     position: "relative",
     flexDirection: "row-reverse",
 
-    overflow: "hidden",
+    overflow: "visible",
 
     p: {
       maxWidth: "60ch"
