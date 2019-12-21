@@ -3,9 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
+    "babel-plugin-emotion": "^10.0.23",
+    "emotion-theming": "^10.0.19",
+    "facepaint": "^1.2.1",
+    "framer-motion": "^1.6.15",
+    "lodash": "^4.17.15",
+    "luxon": "^1.21.2",
+    "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-router-last-location": "^2.0.1",
+    "react-scripts": "3.2.0",
+    "react-swipeable-views": "^0.13.3"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
