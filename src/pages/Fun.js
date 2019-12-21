@@ -260,7 +260,7 @@ const viewItems = [
     ),
     content: `For me programming is a means to an end. A way to implement
     something cool. I do enjoy the act of programming itself but
-    what excites me the most is result. Rarely do I get bogged
+    what excites me the most is the result. Rarely do I get bogged
     down by a technical detail as long as the implementation gets
     the job done. Code is a tool which grants me the grand ability to create.
     And oh what a privilege that is.`,
