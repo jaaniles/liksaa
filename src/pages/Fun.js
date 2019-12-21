@@ -212,7 +212,7 @@ const viewItems = [
     content: `I enjoy developing pretty things that move. From 3D-animation
     to UI's that dance, creating motion is what excites me.`,
     CustomComponent: (
-      <SlantedCard transparent>
+      <SlantedCard transparent flat>
         <DayNight />
       </SlantedCard>
     )
