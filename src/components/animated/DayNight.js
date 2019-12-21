@@ -23,7 +23,7 @@ const WorldCircle = styled(motion.div)({
 
 const Waterline = styled(motion.div)({
   position: "absolute",
-  bottom: 0,
+  bottom: -5,
   width: "100%",
   height: "40%",
 
