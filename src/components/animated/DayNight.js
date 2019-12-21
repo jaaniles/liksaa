@@ -10,7 +10,7 @@ const orange = "#b33700";
 const WorldCircle = styled(motion.div)({
   width: 125,
   height: 125,
-  borderRadius: "50%",
+  borderRadius: "25%",
 
   position: "relative",
   overflow: "hidden",
@@ -18,9 +18,7 @@ const WorldCircle = styled(motion.div)({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-end",
-  alignItems: "flex-end",
-
-  border: `4px solid ${ds.colors.liquorice}`
+  alignItems: "flex-end"
 });
 
 const Waterline = styled(motion.div)({
@@ -85,8 +83,8 @@ const DayNight = () => {
   const ctrls = useAnimation();
 
   const handleCycle = async () => {
-    await ctrls.start("night");
     await ctrls.start("day");
+    await ctrls.start("night");
     handleCycle();
   };
 
@@ -157,8 +155,8 @@ const DayNight = () => {
       <Sun
         variants={{
           initial: {
-            y: 70,
-            x: -90
+            y: 95,
+            x: -150
           },
           day: {
             x: -36,
