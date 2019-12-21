@@ -91,7 +91,8 @@ const InfoContent = styled.div({
 
 const View = styled.div({
   padding: "1em",
-  position: "relative"
+  position: "relative",
+  overflow: "hidden"
 });
 
 const Content = styled.div({
