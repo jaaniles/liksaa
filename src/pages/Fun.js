@@ -241,8 +241,9 @@ const viewItems = [
     title: "You have encountered a campfire",
     content: (
       <span>
-        Stay a while and relax -- <span style={{ color: "#ff7844" }}>tap</span>{" "}
-        to light it up
+        Stay a while and enjoy the warmth!{" "}
+        <span style={{ color: "#ff7844" }}>Tap</span> the campfire to light it
+        up.
       </span>
     ),
     CustomComponent: <Campfire />
