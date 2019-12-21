@@ -6,10 +6,10 @@ import SwipeableViews from "react-swipeable-views";
 
 import PageWrapper from "../components/PageWrapper";
 import Campfire from "../components/animated/Campfire";
+import DayNight from "../components/animated/DayNight";
 
 import tool from "../assets/tool.svg";
 import modern from "../assets/modern.svg";
-import motionlogo from "../assets/framer-motion-logo.png";
 
 import * as ds from "../design";
 
@@ -19,9 +19,9 @@ const SlantedCard = styled(motion.div)(
     justifyContent: "center",
     alignItems: "center",
 
-    minWidth: 80,
+    minWidth: 100,
     maxWidth: 200,
-    maxHeight: 120,
+    maxHeight: 200,
     margin: "0 1em",
 
     transform: "perspective(400px) rotateY(-40deg) rotateX(20deg)",
@@ -35,7 +35,7 @@ const SlantedCard = styled(motion.div)(
       margin: "0 auto"
     },
 
-    width: "80%",
+    width: "100%",
     height: "auto",
     borderRadius: 20
   },
@@ -46,6 +46,10 @@ const SlantedCard = styled(motion.div)(
   props =>
     props.flat && {
       transform: "perspective(400px) rotateY(0deg) rotateX(0deg)"
+    },
+  props =>
+    props.transparent && {
+      background: "transparent"
     }
 );
 
@@ -208,8 +212,8 @@ const viewItems = [
     content: `I enjoy developing pretty things that move. From 3D-animation
     to UI's that dance, creating motion is what excites me.`,
     CustomComponent: (
-      <SlantedCard>
-        <img src={motionlogo} alt="Framer motion" />
+      <SlantedCard transparent>
+        <DayNight />
       </SlantedCard>
     )
   },
