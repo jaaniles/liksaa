@@ -83,8 +83,8 @@ const DayNight = () => {
   const ctrls = useAnimation();
 
   const handleCycle = async () => {
-    await ctrls.start("day");
     await ctrls.start("night");
+    await ctrls.start("day");
     handleCycle();
   };
 
@@ -138,7 +138,7 @@ const DayNight = () => {
           },
           night: {
             background:
-              "linear-gradient(120deg, #31556D 0%, #31556D 35%, #9BB1CF 53%, #31556D 82%, #31556D 100%)",
+              "linear-gradient(105deg, #31556D 0%, #31556D 35%, #9BB1CF 53%, #31556D 82%, #31556D 100%)",
 
             transition: {
               background: {
