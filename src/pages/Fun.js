@@ -127,7 +127,7 @@ const Main = ({ index }) => {
         >
           {viewItems.map((vi, i) => (
             <ViewComponent
-              flip={i % 2 !== 0}
+              flip={i % 2 === 0}
               key={i}
               title={vi.title}
               content={vi.content}
@@ -201,8 +201,8 @@ const Thumbnail = styled(motion.div)({
   }
 });
 
-const SlantedCardWithImage = ({ img, alt }) => (
-  <SlantedCard>
+const SlantedCardWithImage = ({ img, alt, flip }) => (
+  <SlantedCard flip={flip}>
     <img src={img} alt={alt} />
   </SlantedCard>
 );
@@ -221,16 +221,13 @@ const viewItems = [
   {
     title: (
       <span>
-        Digital Napoleon
-        <span role="img" aria-label="tool">
-          🎖️
+        Young gun{" "}
+        <span role="img" aria-label="Pistol">
+          🔫
         </span>
       </span>
     ),
-    content: `I'm a relatively young developer in the grand scheme of
-    things. I have grown up with techs like React and thus I have
-    been shaped by the modern ways of web development. XML, SAP and all the oldies - the burden of legacy does not
-    hinder my work.`,
+    content: `I'm a developer who has grown up with modern techs. XML, SAP and all the oldies - the burdens of legacy do not hinder my work.`,
     CustomComponent: (
       <SlantedCard flip>
         <img src={modern} alt="modern" />
@@ -250,22 +247,12 @@ const viewItems = [
     CustomComponent: <Campfire />
   },
   {
-    title: (
-      <span>
-        Favorite tool{" "}
-        <span role="img" aria-label="tool">
-          🛠️
-        </span>{" "}
-        in the shed
-      </span>
-    ),
-    content: `For me programming is a means to an end. A way to implement
-    something cool. I do enjoy the act of programming itself but
-    what excites me the most is the result. Rarely do I get bogged
-    down by a technical detail as long as the implementation gets
-    the job done. Code is a tool which grants me the grand ability to create.
-    And oh what a privilege that is.`,
-    CustomComponent: <SlantedCardWithImage img={tool} alt="Code is a tool" />
+    title: "Tool of Creation",
+    content: `For me programming is a means to an end. I do enjoy the act of programming itself but
+    what excites me the most is the result. Code is a tool which grants me the grand ability to create.`,
+    CustomComponent: (
+      <SlantedCardWithImage flip img={tool} alt="Code is a tool" />
+    )
   }
 ];
 

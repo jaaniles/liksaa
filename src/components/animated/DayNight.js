@@ -19,7 +19,9 @@ const WorldCircle = styled(motion.div)({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-end",
-  alignItems: "flex-end"
+  alignItems: "flex-end",
+
+  border: `2px solid ${ds.colors.liquorice}`
 });
 
 const Waterline = styled(motion.div)({
