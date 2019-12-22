@@ -127,6 +127,7 @@ const Main = ({ index }) => {
         >
           {viewItems.map((vi, i) => (
             <ViewComponent
+              flip={i % 2 !== 0}
               key={i}
               title={vi.title}
               content={vi.content}
@@ -268,9 +269,9 @@ const viewItems = [
   }
 ];
 
-const ViewComponent = ({ title, content, CustomComponent, small, i }) => (
+const ViewComponent = ({ title, content, CustomComponent, small, i, flip }) => (
   <View>
-    <Row small={small} flip={i % 2 === 0}>
+    <Row small={small} flip={flip}>
       <InfoContent>
         <h3>{title}</h3>
         <p>{content}</p>
