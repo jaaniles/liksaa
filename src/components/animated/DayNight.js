@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { motion, useAnimation } from "framer-motion";
 import { transparentize } from "polished";
+import VisbilitySensor from "react-visibility-sensor";
 
 import * as ds from "../../design";
 
@@ -135,119 +136,130 @@ const DayNight = () => {
   const handleCycle = async () => {
     await ctrls.start("night");
     await ctrls.start("day");
+
     handleCycle();
   };
 
-  handleCycle();
+  const onVisibilityChange = isVisible => {
+    if (!isVisible) {
+      ctrls.start("initial");
+    } else {
+      handleCycle();
+    }
+  };
 
   return (
-    <WorldCircle
-      initial="initial"
-      animate={ctrls}
-      variants={{
-        initial: {
-          background: "linear-gradient(180deg, #314974, #4576A3)"
-        },
-        day: {
-          boxShadow: `1px 12px 25px 15px ${transparentize(
-            0.85,
-            ds.colors.romantic
-          )}`,
-          background: "linear-gradient(to bottom, #BE4405, #F6C60C)"
-        },
-        night: {
-          boxShadow: `1px 12px 50px 10px ${transparentize(
-            0.85,
-            ds.colors.sweet
-          )}`,
-          background: "linear-gradient(to bottom, #0B1624, #121D3A)"
-        }
-      }}
-    >
-      <Stars variants={starVariants}>
-        <div />
-        <div />
-        <div />
-        <div />
-      </Stars>
-      <Waterline
+    <VisbilitySensor onChange={onVisibilityChange}>
+      <WorldCircle
+        initial="initial"
+        animate={ctrls}
         variants={{
           initial: {
-            background:
-              "linear-gradient(90deg, #31556D 0%, #31556D 21%, #6E9CB7 53%, #31556D 82%, #31556D 100%)"
+            background: "linear-gradient(to bottom, #0B1624, #121D3A)"
           },
           day: {
-            background:
-              "linear-gradient(90deg, #6D9697 0%, #6D9697 21%, rgba(255,207,145,0.71) 53%, #6D9697 82%, #6D9697 100%)",
-            transition: {
-              background: {
-                ease: "anticipate",
-                times: [0, 0.9],
+            boxShadow: `1px 12px 25px 15px ${transparentize(
+              0.85,
+              ds.colors.romantic
+            )}`,
+            background: "linear-gradient(to bottom, #BE4405, #F6C60C)"
+          },
+          night: {
+            boxShadow: `1px 12px 50px 10px ${transparentize(
+              0.85,
+              ds.colors.sweet
+            )}`,
+            background: "linear-gradient(to bottom, #0B1624, #121D3A)"
+          }
+        }}
+      >
+        <Stars variants={starVariants}>
+          <div />
+          <div />
+          <div />
+          <div />
+        </Stars>
+        <Waterline
+          variants={{
+            initial: {
+              background:
+                "linear-gradient(90deg, #31556D 0%, #31556D 21%, #6E9CB7 53%, #31556D 82%, #31556D 100%)"
+            },
+            day: {
+              background: `linear-gradient(90deg, #6D9697 0%, #6D9697 21%, ${transparentize(
+                0.3,
+                "#FFCF91"
+              )} 53%, #6D9697 82%, #6D9697 100%)`,
+              transition: {
+                background: {
+                  ease: "anticipate",
+                  times: [0, 0.9],
+                  yoyo: 1,
+                  duration: 3,
+                  repeatDelay: 2
+                },
                 yoyo: 1,
                 duration: 3,
                 repeatDelay: 2
-              },
-              yoyo: 1,
-              duration: 3,
-              repeatDelay: 2
-            }
-          },
-          night: {
-            background:
-              "linear-gradient(105deg, #31556D 0%, #31556D 35%, #9BB1CF 53%, #31556D 82%, #31556D 100%)",
+              }
+            },
+            night: {
+              background:
+                "linear-gradient(105deg, #31556D 0%, #31556D 35%, #9BB1CF 53%, #31556D 82%, #31556D 100%)",
 
-            transition: {
-              background: {
+              transition: {
+                background: {
+                  ease: "anticipate",
+                  times: [0, 0.9],
+                  yoyo: 1,
+                  duration: 3,
+                  repeatDelay: 2
+                }
+              }
+            }
+          }}
+        />
+        <Sun
+          variants={{
+            initial: {
+              y: 60,
+              x: -110
+            },
+            day: {
+              x: -36,
+              y: -28,
+              transition: {
+                yoyo: 1,
+                duration: 2,
+                repeatDelay: 2
+              }
+            }
+          }}
+        />
+        <Moon
+          variants={{
+            initial: {
+              y: -90,
+              x: 50
+            },
+            night: {
+              x: -20,
+              y: -58,
+              transition: {
                 ease: "anticipate",
-                times: [0, 0.9],
                 yoyo: 1,
                 duration: 3,
                 repeatDelay: 2
               }
             }
-          }
-        }}
-      />
-      <Sun
-        variants={{
-          initial: {
-            y: 60,
-            x: -110
-          },
-          day: {
-            x: -36,
-            y: -28,
-            transition: {
-              yoyo: 1,
-              duration: 2,
-              repeatDelay: 2
-            }
-          }
-        }}
-      />
-      <Moon
-        variants={{
-          initial: {
-            y: -90,
-            x: 50
-          },
-          night: {
-            x: -20,
-            y: -58,
-            transition: {
-              ease: "anticipate",
-              yoyo: 1,
-              duration: 3,
-              repeatDelay: 2
-            }
-          }
-        }}
-      >
-        <div />
-        <div />
-        <div />
-      </Moon>
-    </WorldCircle>
+          }}
+        >
+          <div />
+          <div />
+          <div />
+        </Moon>
+      </WorldCircle>
+    </VisbilitySensor>
   );
 };
 

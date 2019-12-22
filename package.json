@@ -18,7 +18,8 @@
     "react-router-dom": "^5.1.2",
     "react-router-last-location": "^2.0.1",
     "react-scripts": "3.2.0",
-    "react-swipeable-views": "^0.13.3"
+    "react-swipeable-views": "^0.13.3",
+    "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^3.1.1",
