@@ -19,7 +19,7 @@ const SlantedCard = styled(motion.div)(
     justifyContent: "center",
     alignItems: "center",
 
-    minWidth: 100,
+    minWidth: 125,
     maxWidth: 200,
     maxHeight: 200,
     margin: "0 1em",
