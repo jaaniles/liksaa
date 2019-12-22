@@ -103,7 +103,7 @@ const globalStyles = {
     textShadow: "1px 1px 1px rgba(0,0,0,0.004)",
     textRendering: "optimizeLegibility !important",
     WebkitFontSmoothing: "antialiased !important",
-    fontSize: "calc(15px + .35vw)",
+    fontSize: "calc(13px + .35vw)",
     height: "100%",
     overflowX: "hidden",
     overflowY: "auto"
