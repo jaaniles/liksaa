@@ -10,7 +10,7 @@ const orange = "#b33700";
 const WorldCircle = styled(motion.div)({
   width: 125,
   height: 125,
-  borderRadius: "25%",
+  borderRadius: "50%",
 
   position: "relative",
   overflow: "hidden",
@@ -26,8 +26,6 @@ const Waterline = styled(motion.div)({
   bottom: -5,
   width: "100%",
   height: "40%",
-
-  borderRadius: "10%",
 
   zIndex: 1
 });
@@ -51,7 +49,7 @@ const Moon = styled(motion.div)({
   background: "#D9D8D0",
   borderRadius: "50%",
 
-  boxShadow: `inset -6px 2px 0 0px #727272`,
+  boxShadow: `inset -4px 2px 0 0px #727272`,
 
   "> div": {
     content: "''",
@@ -79,6 +77,58 @@ const Moon = styled(motion.div)({
   }
 });
 
+const Stars = styled(motion.div)({
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+
+  "> div": {
+    position: "absolute",
+    background: "#FFF",
+
+    borderRadius: "50%",
+    boxShadow: "0 0 8px rgba(255, 255, 255, 1)",
+    overflow: "hidden",
+    width: "0.8%",
+    height: "0.8%",
+
+    top: "30%",
+    left: "25%",
+
+    "&:nth-of-type(2)": {
+      top: "10%",
+      left: "50%"
+    },
+    "&:nth-of-type(3)": {
+      top: "51%",
+      left: "42%"
+    },
+    "&:nht-of-type(4)": {
+      top: "22%",
+      left: "80%"
+    }
+  }
+});
+
+const starVariants = {
+  initial: {
+    y: -100,
+    x: 100,
+    opacity: 0
+  },
+  night: {
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: {
+      ease: "easeInOut",
+      yoyo: 1,
+      duration: 2,
+      repeatDelay: 3
+    }
+  }
+};
+
 const DayNight = () => {
   const ctrls = useAnimation();
 
@@ -96,7 +146,7 @@ const DayNight = () => {
       animate={ctrls}
       variants={{
         initial: {
-          background: "linear-gradient(to bottom, #BE4405, #F6C60C)"
+          background: "linear-gradient(180deg, #314974, #4576A3)"
         },
         day: {
           boxShadow: `1px 12px 25px 15px ${transparentize(
@@ -114,11 +164,17 @@ const DayNight = () => {
         }
       }}
     >
+      <Stars variants={starVariants}>
+        <div />
+        <div />
+        <div />
+        <div />
+      </Stars>
       <Waterline
         variants={{
           initial: {
             background:
-              "linear-gradient(90deg, #31556D 0%, #31556D 21%, #31556D 53%, #31556D 82%, #31556D 100%)"
+              "linear-gradient(90deg, #31556D 0%, #31556D 21%, #6E9CB7 53%, #31556D 82%, #31556D 100%)"
           },
           day: {
             background:
@@ -155,15 +211,15 @@ const DayNight = () => {
       <Sun
         variants={{
           initial: {
-            y: 95,
-            x: -150
+            y: 60,
+            x: -110
           },
           day: {
             x: -36,
-            y: -30,
+            y: -28,
             transition: {
               yoyo: 1,
-              duration: 3,
+              duration: 2,
               repeatDelay: 2
             }
           }
@@ -172,13 +228,14 @@ const DayNight = () => {
       <Moon
         variants={{
           initial: {
-            y: -77,
-            x: 100
+            y: -90,
+            x: 50
           },
           night: {
             x: -20,
-            y: -55,
+            y: -58,
             transition: {
+              ease: "anticipate",
               yoyo: 1,
               duration: 3,
               repeatDelay: 2
