@@ -8,7 +8,7 @@
     "babel-plugin-emotion": "^10.0.23",
     "emotion-theming": "^10.0.19",
     "facepaint": "^1.2.1",
-    "framer-motion": "^1.6.15",
+    "framer-motion": "^2.6.13",
     "lodash": "^4.17.15",
     "luxon": "^1.21.2",
     "polished": "^3.4.2",
