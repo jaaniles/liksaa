@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 import Flex from "./layout/Flex";
+import Person from "./Person";
 
 import * as ds from "../design";
 
 const Message = styled.li({
-  borderRadius: 8,
+  borderRadius: 12,
   background: ds.colors.lila,
+  borderBottomLeftRadius: 0,
 
   padding: "4px 16px",
 
@@ -33,11 +35,19 @@ const Example = () => {
 
   return (
     <Flex column style={{ justifyContent: "flex-start" }}>
-      <div>
-        <h1 style={{ letterSpacing: 5 }}>SHOUTBOARD</h1>
-        <Button onClick={addMessage}>Tell me something</Button>
+      <Flex column centered>
+        <Person name="Chocolate Dragon" shape="chocolate" />
+      </Flex>
+      <div style={{ padding: 32 }}>
+        <Button onClick={addMessage}>Shout</Button>
       </div>
-      <ul style={{ listStyle: "none", width: "100%" }}>
+      <ul
+        style={{
+          listStyle: "none",
+          width: "100%",
+          height: "100%"
+        }}
+      >
         {messages.map((m, i) => (
           <Message key={m.id} onClick={() => deleteMessage(i)}>
             {m.text}

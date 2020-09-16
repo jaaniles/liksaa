@@ -6,9 +6,8 @@ import TagLayout from "./layout/TagLayout";
 import Tag from "./Tag";
 
 const Example2 = () => (
-  <Flex column centered>
-    <h1>Example 2</h1>
-    <Person name="Laikku" shape="browser" />
+  <Flex column style={{ justifyContent: "flex-start" }}>
+    <Person name="Nakkivene" shape="file" />
     <TagLayout>
       <Tag label="Some" />
       <Tag label="React" />

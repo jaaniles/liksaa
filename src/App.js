@@ -2,7 +2,6 @@ import React from "react";
 import { Global } from "@emotion/core";
 import styled from "@emotion/styled";
 import { ThemeProvider } from "emotion-theming";
-import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LastLocationProvider } from "react-router-last-location";
 
@@ -19,6 +18,8 @@ const MainContainer = styled(Flex)({
   justifyContent: "flex-start",
   width: "100%",
   minHeight: "100%",
+
+  paddingTop: 32,
 
   background:
     "linear-gradient(9.1deg, rgba(165, 159, 182, 0.88) -88.65%, rgba(61, 42, 120, 0.94) 58%)",
@@ -73,7 +74,7 @@ const globalStyles = {
     height: "100%"
   },
   body: {
-    fontFamily: "IBM Plex Sans Condensed, sans-serif",
+    fontFamily: "Raleway, sans-serif",
     padding: 0,
     margin: 0,
     width: "100%",
@@ -88,8 +89,11 @@ const globalStyles = {
     overflowY: "auto",
     color: ds.colors.white
   },
-  "h1, h2, h3, h4, button, p": {
-    fontFamily: "IBM Plex Serif, serif"
+  button: {
+    fontFamily: "Raleway, sans-serif"
+  },
+  "h1, h2, h3, h4": {
+    fontFamily: "Kumbh Sans"
   },
   "#root": {
     display: "flex",

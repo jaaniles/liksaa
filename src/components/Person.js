@@ -19,8 +19,8 @@ import Flex from "./layout/Flex";
 import * as ds from "../design";
 
 const PersonContainer = styled(Flex)({
-  display: "block",
-  marginTop: ds.scale(2)
+  marginTop: ds.scale(2),
+  margin: "0 auto"
 });
 
 const Avatar = styled(Flex)({
@@ -65,7 +65,7 @@ const Person = ({ name = "Ghostie", shape = "Ghost", children, ...rest }) => {
     <PersonContainer column centered {...rest}>
       <Avatar column centered>
         <Flex column centered>
-          {getShape(shape)}
+          {getShape(shape.toLowerCase())}
         </Flex>
       </Avatar>
       <h2 style={{ textAlign: "center" }}>{name}</h2>

@@ -9,7 +9,7 @@ import * as ds from "../../design";
 const sitemap = [
   {
     url: "/",
-    label: "Index",
+    label: "Main",
     color: ds.colors.lila
   },
   {
@@ -76,7 +76,7 @@ const NavigationButton = ({
   isActive = false,
   history,
   url = "/",
-  label = "Index",
+  label = "index",
   color
 }) => {
   const navigateTo = (url = "/") => {
