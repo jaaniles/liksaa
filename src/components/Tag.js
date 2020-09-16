@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 
 import * as ds from "../design";
 
-const TagStyle = styled(motion.div)({
+const TagStyle = styled.div({
   borderRadius: 16,
+  background: ds.colors.lila,
 
   display: "inline-block",
   padding: "4px 16px",
@@ -17,26 +17,7 @@ const TagStyle = styled(motion.div)({
 
 const Tag = ({ label = "SOMETHING" }) => {
   return (
-    <TagStyle
-      variants={{
-        initial: {
-          background: ds.colors.lila,
-          cursor: "pointer",
-          opacity: 0,
-          scale: 0.5,
-          y: 15
-        },
-        animate: {
-          opacity: 1,
-          scale: 1,
-          y: 0
-        }
-      }}
-      whileHover={{
-        background: ds.colors.amber,
-        y: -3
-      }}
-    >
+    <TagStyle>
       <p>{label}</p>
     </TagStyle>
   );

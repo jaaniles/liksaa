@@ -16,22 +16,7 @@ const TagsContainer = styled(Flex)({
 });
 
 const TagsLayout = ({ children }) => {
-  return (
-    <TagsContainer
-      row
-      initial="initial"
-      animate="animate"
-      variants={{
-        animate: {
-          transition: {
-            staggerChildren: 0.2
-          }
-        }
-      }}
-    >
-      {children}
-    </TagsContainer>
-  );
+  return <TagsContainer row>{children}</TagsContainer>;
 };
 
 export default TagsLayout;

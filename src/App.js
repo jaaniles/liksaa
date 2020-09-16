@@ -41,23 +41,21 @@ function App() {
               <Route
                 render={({ location }) => {
                   return (
-                    <AnimatePresence exitBeforeEnter>
-                      <Switch location={location} key={location.pathname}>
-                        <Route key="index" exact path="/" component={Main} />
-                        <Route
-                          key="example"
-                          exact
-                          path="/example"
-                          component={Example}
-                        />
-                        <Route
-                          key="example2"
-                          exact
-                          path="/example2"
-                          component={Example2}
-                        />
-                      </Switch>
-                    </AnimatePresence>
+                    <Switch location={location} key={location.pathname}>
+                      <Route key="index" exact path="/" component={Main} />
+                      <Route
+                        key="example"
+                        exact
+                        path="/example"
+                        component={Example}
+                      />
+                      <Route
+                        key="example2"
+                        exact
+                        path="/example2"
+                        component={Example2}
+                      />
+                    </Switch>
                   );
                 }}
               />

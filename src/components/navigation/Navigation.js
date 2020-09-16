@@ -1,5 +1,4 @@
 import React from "react";
-import { motion, AnimateSharedLayout } from "framer-motion";
 import styled from "@emotion/styled";
 import { withRouter } from "react-router";
 
@@ -31,7 +30,7 @@ const NavigationContainer = styled(Flex)({
   width: "100%"
 });
 
-const Button = styled(motion.button)(
+const Button = styled.button(
   {
     background: "none",
     border: "none",
@@ -46,7 +45,7 @@ const Button = styled(motion.button)(
   props => props.color && props.isActive && { color: props.color }
 );
 
-const Underline = styled(motion.div)({
+const Underline = styled.div({
   width: "100%",
   height: 8,
   borderRadius: 4,
@@ -57,21 +56,19 @@ const Underline = styled(motion.div)({
 
 const Navigation = ({ location, history }) => {
   return (
-    <AnimateSharedLayout>
-      <NavigationContainer row>
-        {sitemap.map((s, i) => (
-          <NavigationButton
-            key={i}
-            isActive={location.pathname === s.url}
-            location={location}
-            history={history}
-            label={s.label}
-            url={s.url}
-            color={s.color}
-          />
-        ))}
-      </NavigationContainer>
-    </AnimateSharedLayout>
+    <NavigationContainer row>
+      {sitemap.map((s, i) => (
+        <NavigationButton
+          key={i}
+          isActive={location.pathname === s.url}
+          location={location}
+          history={history}
+          label={s.label}
+          url={s.url}
+          color={s.color}
+        />
+      ))}
+    </NavigationContainer>
   );
 };
 
@@ -87,14 +84,8 @@ const NavigationButton = ({
   };
 
   return (
-    <motion.div style={{ position: "relative" }}>
-      {isActive && (
-        <Underline
-          layoutId="underline"
-          animate={{ background: color }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        />
-      )}
+    <div style={{ position: "relative" }}>
+      {isActive && <Underline />}
       <Button
         isActive={isActive}
         onClick={() => navigateTo(url)}
@@ -112,7 +103,7 @@ const NavigationButton = ({
       >
         {label}
       </Button>
-    </motion.div>
+    </div>
   );
 };
 

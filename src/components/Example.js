@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
 
 import Flex from "./layout/Flex";
 
 import * as ds from "../design";
 
-const Message = styled(motion.li)({
+const Message = styled.li({
   borderRadius: 8,
   background: ds.colors.lila,
 
@@ -33,66 +32,18 @@ const Example = () => {
   };
 
   return (
-    <Flex
-      column
-      initial="exit"
-      animate="enter"
-      exit="exit"
-      variants={{
-        exit: {
-          opacity: 0,
-          x: -50
-        },
-        enter: {
-          opacity: 1,
-          x: 0
-        }
-      }}
-      style={{ justifyContent: "flex-start" }}
-    >
+    <Flex column style={{ justifyContent: "flex-start" }}>
       <div>
         <h1 style={{ letterSpacing: 5 }}>SHOUTBOARD</h1>
-        <Button
-          whileHover={{ opacity: 0.8 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 1, scale: 1 }}
-          onClick={addMessage}
-        >
-          Tell me something
-        </Button>
+        <Button onClick={addMessage}>Tell me something</Button>
       </div>
-      <motion.ul style={{ listStyle: "none", width: "100%" }}>
-        <AnimatePresence initial={false}>
-          {messages.map((m, i) => (
-            <Message
-              layout
-              key={m.id}
-              onClick={() => deleteMessage(i)}
-              exit="exit"
-              initial="initial"
-              animate="animate"
-              variants={{
-                exit: {
-                  y: -10,
-                  opacity: 0
-                },
-                initial: {
-                  x: 10,
-                  opacity: 0,
-                  scale: 0
-                },
-                animate: {
-                  x: 0,
-                  opacity: 1,
-                  scale: 1
-                }
-              }}
-            >
-              {m.text}
-            </Message>
-          ))}
-        </AnimatePresence>
-      </motion.ul>
+      <ul style={{ listStyle: "none", width: "100%" }}>
+        {messages.map((m, i) => (
+          <Message key={m.id} onClick={() => deleteMessage(i)}>
+            {m.text}
+          </Message>
+        ))}
+      </ul>
     </Flex>
   );
 };
@@ -109,7 +60,7 @@ const texts = [
   "In the 18th century, wealthy British landowners hired ornamental hermits to live in their gardens."
 ];
 
-const Button = styled(motion.button)({
+const Button = styled.button({
   background: ds.colors.red,
   border: "none",
   borderRadius: 8,
