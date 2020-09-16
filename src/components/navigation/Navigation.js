@@ -1,205 +1,119 @@
 import React from "react";
+import { motion, AnimateSharedLayout } from "framer-motion";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
-import { sitemap } from "../../App";
+import Flex from "../layout/Flex";
 
-const NavigationWrapper = styled(motion.div)({
-  position: "relative",
-  borderRadius: 25,
-  maxHeight: 80,
-  maxWidth: 500,
-  background: "linear-gradient(180deg, #1C1115 16%, #231123 100%);",
+import * as ds from "../../design";
 
-  fontWeight: 600
+const sitemap = [
+  {
+    url: "/",
+    label: "Index",
+    color: ds.colors.lila
+  },
+  {
+    url: "/example",
+    label: "Example 1",
+    color: ds.colors.amber
+  },
+  {
+    url: "/example2",
+    label: "Example 2",
+    color: ds.colors.secondary
+  }
+];
+
+const NavigationContainer = styled(Flex)({
+  color: ds.colors.white,
+  padding: 8,
+  width: "100%"
 });
 
-const NavigationItemsContainer = styled(motion.div)({
-  width: "100%",
-  display: "grid",
-  gridTemplateColumns: "[l] 1fr [mid] 1fr [r] 1fr",
-  gridTemplateRows: "1fr 4px"
-});
+const Button = styled(motion.button)(
+  {
+    background: "none",
+    border: "none",
+    outline: "none",
+    color: ds.colors.white,
+    fontSize: ds.sizes.xxl,
 
-const NaviButton = styled(motion.div)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-
-  cursor: "pointer",
-
-  WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
-
-  a: {
-    color: "white",
-    textDecoration: "none",
-    position: "relative",
-
-    img: {
-      width: 25,
-      marginRight: 8,
-      verticalAlign: "middle"
+    p: {
+      zIndex: 1
     }
   },
+  props => props.color && props.isActive && { color: props.color }
+);
 
-  margin: "0 auto"
-});
+const Underline = styled(motion.div)({
+  width: "100%",
+  height: 8,
+  borderRadius: 4,
 
-const CenterButton = styled(NaviButton)({
-  width: 82,
-  boxShadow: "0px 15px 28px 20px rgba(234, 51, 128, 0.25)",
-
-  a: {
-    background: "transparent",
-    color: "white"
-  }
+  position: "absolute",
+  bottom: -8
 });
 
 const Navigation = ({ location, history }) => {
-  const navigateTo = url => {
+  return (
+    <AnimateSharedLayout>
+      <NavigationContainer row>
+        {sitemap.map((s, i) => (
+          <NavigationButton
+            key={i}
+            isActive={location.pathname === s.url}
+            location={location}
+            history={history}
+            label={s.label}
+            url={s.url}
+            color={s.color}
+          />
+        ))}
+      </NavigationContainer>
+    </AnimateSharedLayout>
+  );
+};
+
+const NavigationButton = ({
+  isActive = false,
+  history,
+  url = "/",
+  label = "Index",
+  color
+}) => {
+  const navigateTo = (url = "/") => {
     history.push(url);
   };
 
   return (
-    <NavigationWrapper
-      initial="initial"
-      animate="animate"
-      variants={{
-        initial: { y: 50, scale: 0 },
-        animate: {
-          scale: 1,
-          y: [0, 2, -2, 0],
-          transition: {
-            delay: 0.5,
-            scale: {
-              duration: 0.25
-            },
-            duration: 5,
-            yoyo: Infinity,
-            staggerChildren: 0.25,
-            delayChildren: 0.8
-          }
-        }
-      }}
-    >
-      <NavigationItemsContainer>
-        <Indicator
-          variants={indicatorVariants}
-          initial="initial"
-          animate={getLocIndex(location)}
+    <motion.div style={{ position: "relative" }}>
+      {isActive && (
+        <Underline
+          layoutId="underline"
+          animate={{ background: color }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
         />
-        {sitemap.map((s, i) =>
-          i === 1 ? (
-            <CenterBtn key={i} s={s} navigateTo={navigateTo} />
-          ) : (
-            <NaviButton
-              key={i}
-              variants={naviBtnVariants}
-              whileHover="hover"
-              whileTap="hover"
-            >
-              <Link to={s.url}>
-                <img src={s.icon} alt="alt" />
-                {s.name}
-              </Link>
-            </NaviButton>
-          )
-        )}
-      </NavigationItemsContainer>
-    </NavigationWrapper>
+      )}
+      <Button
+        isActive={isActive}
+        onClick={() => navigateTo(url)}
+        color={color}
+        initial="initial"
+        animate={isActive ? "active" : "initial"}
+        variants={{
+          initial: {
+            scale: 0.5
+          },
+          active: {
+            scale: 1
+          }
+        }}
+      >
+        {label}
+      </Button>
+    </motion.div>
   );
-};
-
-const getLocIndex = location => {
-  return sitemap.find(s => s.url === location.pathname).pos;
-};
-
-const CenterBtn = ({ s, navigateTo }) => (
-  <CenterButton
-    initial="initial"
-    animate="animate"
-    whileHover="hover"
-    whileTap="hover"
-    variants={blobBtnVariants}
-    onClick={() => navigateTo(s.url)}
-  >
-    <Link to={s.url}>{s.name}</Link>
-  </CenterButton>
-);
-
-const indicatorVariants = {
-  initial: {
-    height: 4,
-    left: "0%"
-  },
-  left: {
-    left: "8%"
-  },
-  mid: {
-    left: "40%"
-  },
-  right: {
-    left: "75%"
-  }
-};
-
-const Indicator = styled(motion.div)({
-  borderRadius: 8,
-  width: "20%",
-  background: "#F23468",
-
-  position: "absolute",
-  bottom: 0,
-
-  gridRow: 2
-});
-
-const naviBtnVariants = {
-  initial: {
-    opacity: 0,
-    scale: 0
-  },
-  animate: {
-    opacity: 1,
-    scale: 1
-  },
-  hover: {
-    scale: 1.2,
-    opacity: 0.8
-  }
-};
-
-const blobBtnVariants = {
-  initial: {
-    borderRadius: "0% 0% 0% 0%",
-    background: "linear-gradient(180deg, #EA3380 16%, #FC3744 100%)"
-  },
-  animate: {
-    borderRadius: [
-      "73% 28% 67% 23% / 19% 99% 24% 34%",
-      "13% 43% 22% 80% / 28% 19% 55% 80%",
-      "80% 22% 50% 80% / 80% 80% 80% 20%"
-    ],
-    background: [
-      "linear-gradient(180deg, #FC3744 38%, #EA3380 100%)",
-      "linear-gradient(180deg, #EA3380 16%, #FC3744 100%)"
-    ],
-    y: ["-20px", "-26px", "-16px", "-23px"],
-    x: ["-2px", "3px", "0px", "3px"],
-    scale: 1,
-    transition: {
-      y: {
-        duration: 10
-      },
-      duration: 5,
-      yoyo: Infinity
-    }
-  },
-  hover: {
-    scale: 1.1
-  }
 };
 
 export default withRouter(Navigation);

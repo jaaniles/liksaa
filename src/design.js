@@ -19,10 +19,8 @@ export const colors = {
   black: "#111111",
 
   // Main palette
-  nightsky: "#1B1F3A",
-  burgy: "#53354A",
-  blaze: "#a64942",
-  orange: "#ff7844",
+  lila: "#5A47FF",
+  red: "#F35C4D",
 
   // -----------------
 
