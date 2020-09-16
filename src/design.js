@@ -20,7 +20,7 @@ export const colors = {
 
   // Main palette
   lila: "#5A47FF",
-  red: "#F35C4D",
+  red: "#A02A47",
 
   // -----------------
 
@@ -45,17 +45,6 @@ export const colors = {
   }
 };
 
-export const theme = {
-  background: colors.white,
-  backgroundGradient: "linear-gradient(180deg, #E6513D 1%, #FF7844 100%);",
-  accent: colors.blaze
-};
-
-export const grid = {
-  columns:
-    "[full-start] minmax(0, 1fr) [main-start] minmax(320px, 1140px) [main-end] minmax(0, 1fr) [full-end]"
-};
-
 export const type = {
   color: {
     primary: "#3D3D3D",
@@ -77,11 +66,6 @@ export const sizes = {
   xl: 32,
   xll: 40,
   xxl: 48
-};
-
-export const shadows = {
-  small: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
-  medium: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
 };
 
 export const headings = {

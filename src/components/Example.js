@@ -6,14 +6,20 @@ import Person from "./Person";
 
 import * as ds from "../design";
 
-const Message = styled.li({
+const MessageStyle = styled.li({
   borderRadius: 12,
   background: ds.colors.lila,
   borderBottomLeftRadius: 0,
 
   padding: "4px 16px",
 
-  margin: "8px 0"
+  margin: "8px 0",
+
+  display: "flex",
+  flexWrap: "nowrap",
+  "> *:first-child": {
+    marginRight: 8
+  }
 });
 
 const Example = () => {
@@ -49,9 +55,9 @@ const Example = () => {
         }}
       >
         {messages.map((m, i) => (
-          <Message key={m.id} onClick={() => deleteMessage(i)}>
+          <MessageStyle key={m.id} onClick={() => deleteMessage(i)}>
             {m.text}
-          </Message>
+          </MessageStyle>
         ))}
       </ul>
     </Flex>

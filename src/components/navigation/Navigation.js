@@ -3,26 +3,9 @@ import styled from "@emotion/styled";
 import { withRouter } from "react-router";
 
 import Flex from "../layout/Flex";
+import { sitemap } from "../../App";
 
 import * as ds from "../../design";
-
-const sitemap = [
-  {
-    url: "/",
-    label: "Main",
-    color: ds.colors.lila
-  },
-  {
-    url: "/example",
-    label: "Example 1",
-    color: ds.colors.amber
-  },
-  {
-    url: "/example2",
-    label: "Example 2",
-    color: ds.colors.secondary
-  }
-];
 
 const NavigationContainer = styled(Flex)({
   color: ds.colors.white,

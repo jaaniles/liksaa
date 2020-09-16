@@ -1,9 +1,7 @@
 import React from "react";
 import { Global } from "@emotion/core";
 import styled from "@emotion/styled";
-import { ThemeProvider } from "emotion-theming";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { LastLocationProvider } from "react-router-last-location";
 
 import Flex from "./components/layout/Flex";
 import Navigation from "./components/navigation/Navigation";
@@ -11,18 +9,38 @@ import Navigation from "./components/navigation/Navigation";
 import Main from "./components/Main";
 import Example from "./components/Example";
 import Example2 from "./components/Example2";
+import Background from "./components/animated/Background";
 
 import * as ds from "./design";
+
+export const sitemap = [
+  {
+    url: "/",
+    label: "Main",
+    color: ds.colors.lila,
+    Component: Main
+  },
+  {
+    url: "/example",
+    label: "Example 1",
+    color: ds.colors.amber,
+    Component: Example
+  },
+  {
+    url: "/example2",
+    label: "Example 2",
+    color: ds.colors.secondary,
+    Component: Example2
+  }
+];
 
 const MainContainer = styled(Flex)({
   justifyContent: "flex-start",
   width: "100%",
   minHeight: "100%",
 
+  background: "linear-gradient(62deg, #2A243F 75%, #A02A47 100%)",
   paddingTop: 32,
-
-  background:
-    "linear-gradient(9.1deg, rgba(165, 159, 182, 0.88) -88.65%, rgba(61, 42, 120, 0.94) 58%)",
 
   "> div:first-of-type ": {
     minHeight: 600
@@ -31,41 +49,35 @@ const MainContainer = styled(Flex)({
 
 function App() {
   return (
-    <ThemeProvider theme={ds}>
+    <>
       <Global styles={[globalStyles]} />
 
       <Router>
-        <LastLocationProvider>
-          <Global styles={[globalStyles]} />
+        <Global styles={[globalStyles]} />
+        <Router>
           <MainContainer column centered>
-            <Router>
-              <Route
-                render={({ location }) => {
-                  return (
-                    <Switch location={location} key={location.pathname}>
-                      <Route key="index" exact path="/" component={Main} />
+            <Route
+              render={({ location }) => {
+                return (
+                  <Switch location={location} key={location.pathname}>
+                    {sitemap.map((p, i) => (
                       <Route
-                        key="example"
+                        key={i}
                         exact
-                        path="/example"
-                        component={Example}
+                        path={p.url}
+                        render={props => <p.Component {...props} index={i} />}
                       />
-                      <Route
-                        key="example2"
-                        exact
-                        path="/example2"
-                        component={Example2}
-                      />
-                    </Switch>
-                  );
-                }}
-              />
-              <Navigation />
-            </Router>
+                    ))}
+                  </Switch>
+                );
+              }}
+            />
+            <Navigation />
+            <Background />
           </MainContainer>
-        </LastLocationProvider>
+        </Router>
       </Router>
-    </ThemeProvider>
+    </>
   );
 }
 

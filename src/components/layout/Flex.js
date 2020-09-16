@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 
-export const Layout = styled(motion.div)(
+export const Layout = styled.div(
   {
     display: "flex"
   },
