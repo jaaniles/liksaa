@@ -24,7 +24,7 @@ const PersonContainer = styled(Flex)({
 });
 
 const Avatar = styled(Flex)({
-  border: `1px solid ${ds.colors.black}`,
+  border: `3px solid ${ds.colors.red}`,
   borderRadius: "100%",
 
   width: 120,
