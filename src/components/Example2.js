@@ -7,9 +7,9 @@ import Tag from "./Tag";
 
 const Example2 = () => (
   <Flex column style={{ justifyContent: "flex-start" }}>
-    <Person name="Nakkivene" shape="file" />
+    <Person name="Mr. Lusshoff" shape="file" />
     <TagLayout>
-      <Tag label="Some" />
+      <Tag label="Typescript" />
       <Tag label="React" />
       <Tag label="Animations" />
     </TagLayout>
