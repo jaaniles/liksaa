@@ -40,7 +40,7 @@ const Underline = styled.div({
 
 const Navigation = ({ location, history }) => {
   return (
-    <NavigationContainer row>
+    <NavigationContainer horizontal>
       {sitemap.map((s, i) => (
         <NavigationButton
           key={i}

@@ -16,7 +16,7 @@ const TagsContainer = styled(Flex)({
 });
 
 const TagsLayout = ({ children }) => {
-  return <TagsContainer row>{children}</TagsContainer>;
+  return <TagsContainer horizontal>{children}</TagsContainer>;
 };
 
 export default TagsLayout;
