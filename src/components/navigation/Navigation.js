@@ -29,6 +29,7 @@ const Button = styled.button(
 );
 
 const Underline = styled.div({
+  background: ds.colors.white,
   width: "100%",
   height: 8,
   borderRadius: 4,
